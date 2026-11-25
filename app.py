@@ -12,6 +12,34 @@ ROOT = Path(__file__).resolve().parent
 MODEL_PATH = ROOT / "artifacts" / "fraud_pipeline.joblib"
 
 st.set_page_config(page_title="Fraud Detection Demo", page_icon="💳")
+
+with st.sidebar:
+    st.header("Project details")
+    st.caption("Credit card transaction fraud detection")
+    st.markdown(
+        "**Objective:** Estimate whether a transaction may be fraudulent."
+    )
+    st.markdown(
+        "**Algorithm:** Class-weighted logistic regression with numeric scaling "
+        "and one-hot encoded categories."
+    )
+    st.markdown(
+        "**Data:** 1,296,675 training transactions; 555,719 later test transactions."
+    )
+    st.markdown(
+        "**Workflow:** Quality checks > feature engineering > preprocessing > "
+        "classification."
+    )
+    st.markdown(
+        "**Test (fraud class):** Recall **55%**; precision **3%** at the default "
+        "decision threshold."
+    )
+    st.caption("Low precision means many flagged transactions are false alerts.")
+    st.markdown(
+        "[View project source](https://github.com/EktaJaiswal-lab/"
+        "Credit-Card-Transaction-Fraud-Detection)"
+    )
+
 st.title("Credit Card Transaction Fraud Detection")
 st.write(
     "Enter transaction and location details to see the model's prediction. "
