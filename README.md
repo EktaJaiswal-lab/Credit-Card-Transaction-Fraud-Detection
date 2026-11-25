@@ -10,7 +10,8 @@ pipeline to distinguish potentially fraudulent transactions.
 - `train_model.py` — trains and evaluates the reusable preprocessing/model pipeline.
 - `fraud_features.py` — shared feature engineering for training and app predictions.
 - `app.py` — Streamlit interface for trying one transaction at a time.
-- `fraudTrain.csv` — training data (keep local; do not commit large or sensitive data).
+- `fraudTrain.csv` and `fraudTest.csv` — training and test data (keep local; do not
+  commit large or sensitive transaction data).
 
 ## Run locally (Windows PowerShell)
 
@@ -36,25 +37,43 @@ It saves:
 The test set is later in time than the training set and has a different fraud rate;
 this reflects temporal distribution shift and is reported rather than rebalanced.
 The app loads the saved pipeline, so it uses the same imputing, scaling, and category
-encoding as training. Train the model locally before launching the app.
+encoding as training. The trained pipeline is included in `artifacts/`; rerun
+`python train_model.py` to retrain it.
+
+## Test-set results
+
+The current logistic-regression pipeline was evaluated on all 555,719 rows of
+`fraudTest.csv` (2,145 fraud cases; 0.386% prevalence). At the classifier's default
+0.5 decision threshold, the fraud-class metrics were:
+
+| Metric | Fraud class |
+| --- | ---: |
+| Precision | 0.03 |
+| Recall | 0.55 |
+| F1 score | 0.05 |
+
+Overall accuracy was 0.92, but predicting every transaction as legitimate would
+reach about 99.61% accuracy because fraud is rare. Accuracy alone is therefore not a
+useful measure of this model. At this threshold, only about 3% of flagged transactions
+are fraud, so false alerts are a substantial limitation. Threshold selection should
+be evaluated on a validation split from the training period; keep `fraudTest.csv` as
+the final, untouched evaluation set.
 
 ## Deploy and share
 
-1. Create a GitHub repository and push the source files, README, and requirements.
-   Do not commit the CSV files, `.venv`, or private transaction data.
-2. Train the model and make the generated `artifacts` available to the deployment.
-   If the model is too large for normal Git hosting, use Git LFS or download it from
-   an approved artifact store during deployment.
-3. For Streamlit Community Cloud, create an app from the repository, select
-   `app.py`, and deploy. Ensure the model artifact is available at
-   `artifacts/fraud_pipeline.joblib`; Community Cloud cannot train from a local CSV
-   that was not included in the repository.
-4. Add the GitHub repository and live app URL here, then share those links in your
-   portfolio or LinkedIn post.
+1. The source, requirements, README, and trained pipeline are in the GitHub
+   repository below. The CSV files are intentionally excluded; keep them local and
+   do not publish private transaction data.
+2. For Streamlit Community Cloud, create an app from the repository, select
+   `app.py`, and deploy. The committed model artifact is at
+   `artifacts/fraud_pipeline.joblib`; the cloud app does not need the training CSVs
+   to serve predictions.
+3. Add the live app URL here after deployment, then share it alongside the
+   repository in your portfolio or LinkedIn post.
 
-**GitHub repository:** _Add link after publishing._
+**GitHub repository:** [Credit Card Transaction Fraud Detection](https://github.com/EktaJaiswal-lab/Credit-Card-Transaction-Fraud-Detection)
 
-**Deployed app:** _Add link after deployment._
+**Deployed app:** Not deployed yet.
 
 ## Limitations
 
