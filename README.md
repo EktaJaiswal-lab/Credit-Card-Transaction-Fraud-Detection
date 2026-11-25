@@ -73,7 +73,7 @@ the final, untouched evaluation set.
 
 **GitHub repository:** [Credit Card Transaction Fraud Detection](https://github.com/EktaJaiswal-lab/Credit-Card-Transaction-Fraud-Detection)
 
-**Deployed app:** Not deployed yet.
+**Deployed app:** [Open the Fraud Detection app](https://credit-card-transaction-fraud-detection-pae7igwgfphrj4ukc9gph8.streamlit.app/)
 
 ## Limitations
 
