@@ -1,0 +1,21 @@
+[
+  "merchant",
+  "category",
+  "gender",
+  "city",
+  "state",
+  "job",
+  "amt",
+  "zip",
+  "lat",
+  "long",
+  "city_pop",
+  "merch_lat",
+  "merch_long",
+  "transaction_hour",
+  "transaction_day",
+  "transaction_month",
+  "transaction_weekday",
+  "customer_age",
+  "distance_km"
+]
