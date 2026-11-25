@@ -10,6 +10,8 @@ pipeline to distinguish potentially fraudulent transactions.
 - `train_model.py` — trains and evaluates the reusable preprocessing/model pipeline.
 - `fraud_features.py` — shared feature engineering for training and app predictions.
 - `app.py` — Streamlit interface for trying one transaction at a time.
+- `PROJECT_PRESENTATION_GUIDE.md` — detailed video narration, demo plan, metrics,
+  and common questions.
 - `fraudTrain.csv` and `fraudTest.csv` — training and test data (keep local; do not
   commit large or sensitive transaction data).
 
